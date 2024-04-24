@@ -31,7 +31,7 @@ if verb == "go to":
     pass
     if item == "table":
         current_pos = "table"
-        prompt = "You are next to a table, with a lamp on it. The Lamp as turned off."
+        prompt = "You are next to a table. There is a lamp on it. The Lamp as turned off." # but what if the lamp is on?
 elif verb == "switch on" or verb == "enable":
     pass 
 
