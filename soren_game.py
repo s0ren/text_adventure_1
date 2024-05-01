@@ -10,6 +10,7 @@ scene_description = cave_description
 prompt = "You can now make action by typing verbs and items"
 actions = ["go to", "switch on", "enable" ] # more to come
 items   = ["table", "door", "lamp", "Lock", "key"] # maybee item shall have states as well ...?
+holding_items = []
 
 positions = ["floor", "table", "wall"]
 current_pos = "floor"
@@ -23,6 +24,7 @@ while not game_over:
     print("Debug info:")
     print("Verbs:", actions)
     print("items:", items)
+    print("holding items:", holding_items)
     
     print(scene_description)
     command = input( f"{prompt}> ")
