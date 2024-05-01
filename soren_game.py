@@ -59,5 +59,6 @@ while not game_over:
                 scene_description = "The lamp is now on..."
         else: 
             pass 
-
+    elif action == "quit" or action == "q":
+        break
 # End of loop
