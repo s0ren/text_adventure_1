@@ -12,6 +12,8 @@ actions = ["go to", "switch on", "enable" ] # more to come
 items   = ["table", "door", "lamp", "Lock", "key"] # maybee item shall have states as well ...?
 holding_items = []
 
+lamp_state = "off"
+
 positions = ["floor", "table", "wall"]
 current_pos = "floor"
 
@@ -42,7 +44,11 @@ while not game_over:
         pass
         if item == "table":
             current_pos = "table"
-            scene_description = "You are next to a table. There is a lamp on it. The Lamp as turned off." # but what if the lamp is on?
+            scene_description = "You are next to a table. There is a lamp on it. "
+            if lamp_state == "off":
+                scene_description += "The Lamp as turned off." # but what if the lamp is on?
+            else:
+                scene_description += "The Lamp as turned on, and on the table you can see a key." 
         elif item == "door":
             scene_description = "In the wall there is a door. There is a huge lock on the door. The door won't open!"    
     elif action == "switch on" or action == "enable":
