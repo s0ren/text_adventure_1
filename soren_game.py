@@ -50,7 +50,14 @@ while not game_over:
             else:
                 scene_description += "The Lamp as turned on, and on the table you can see a key." 
         elif item == "door":
+            current_pos = "door"
             scene_description = "In the wall there is a door. There is a huge lock on the door. The door won't open!"    
     elif action == "switch on" or action == "enable":
-        pass 
+        if item == "lamp":
+            if current_pos == "table":
+                lamp_state = "on"
+                scene_description = "The lamp is now on..."
+        else: 
+            pass 
+
 # End of loop
