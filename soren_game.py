@@ -34,8 +34,16 @@ while not game_over:
     # debug info
     print("command:", command)
 
-    action = command[0 : command.rfind(' ')]
-    item = command[command.rfind(' ')+1 : ]
+    action = ""
+    item = ""
+
+    words = command.split()
+    if len(words) > 1:
+        action = " ".join(words[:-1])
+        item   = words[-1]
+    elif len(words) == 1:
+        action = words[0]
+    
 
     print(action)
     print(item)
