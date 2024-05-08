@@ -1,0 +1,142 @@
+@startuml
+'object gameover
+
+!pragma useVerticalIf on
+
+
+start
+
+:set initial state values;
+note left
+    Several states to be detailed later
+    * gameover
+    * location
+    * items near
+    * items state
+    * items taken
+end note
+
+while (gameover) is (False)
+    :Show action (if the was one);
+    :Show location description;
+    :Show items near;
+    :Show items taken;
+    ://DEBUG// Show posible actions;
+    note left
+        he user should experiment, 
+        to figure out what actions works where?
+    end note
+
+    :get user command>
+    :split `command` into action and item;
+
+    if (action is "go to") then (yes)
+        if (item is "table) then (yes)
+            :set location = "table";
+            :set action_description = "You go to to the table";
+            :set near_items to table_items;
+        elseif (item is "door") then (yes)
+            :set location = "door";
+            :set action_description = "You go to to the door";
+            :set near_items to door_items;
+        endif
+    elseif (action is "switch on" or "enable") then (yes)
+        if (item is "lamp") then (yes)
+            if ("lamp" is in near_items) then (yes)
+                :set lamp_state = "on";
+                :set action_description = "You switched the lamp on";
+            else 
+                :set action_description = "There is no lamp here";
+            endif
+        else (no)
+            :set action_description = "you cannot switch that (//item//) on";
+        endif
+    elseif (action is "switch off" or "disable") then (yes)
+        if (item is "lamp") then (yes)
+            if ("lamp" is in near_items) then (yes)
+                :set lamp_state = "off";
+                :set action_description = "You switched the lamp off";
+            else 
+                :set action_description = "There is no lamp here";
+            endif
+        else (no)
+            :set action_description = "you cannot switch that (//item//) off";
+        endif
+    elseif (action is "take") then (yes)
+        if (item is "key") then (yes)
+            if ("key" in near_items) then (yes)
+                :add "key" to taken_items;
+                :delete "key" from near_items;
+                :delete "key" from table_items;
+                :set action_description = "You take the key";
+            else (no)
+                :set action_description = "There is no key here";
+            endif
+        else (no)
+            :set action_description = "You cannot take that (//item//)";
+        endif
+    elseif (action is "throw") then (yes)
+    floating note left: un-take;
+        if (item is "key") then (yes)
+            if ("key" in near_items) then (yes)
+                :delete "key" to taken_items;
+                :add "key" from near_items;
+                if(location is "table") then (yes)
+                    :add "key" to table_items;
+                    :set action_description = "You throw the key on the table";
+                elseif (location is "door") then (yes)
+                    :add "key" to door_items;
+                    :set action_description = "You throw the key by the door";
+                else (no)
+                    :set action_description = "You throw the key in the void";
+                endif
+            else (no)
+                :set action_description = "There is no key here";
+            endif
+        else (no)
+            :set action_description = "You cannot take that (//item//)";
+        endif
+    elseif (action is "use") then (yes)
+        if (item is "key") then (yes)
+            if ("key" in taken_items) then (yes)
+                if (location is "door") then (yes)
+                    :set door_state = "unlocked";
+                    :set action_description = "You insert the key... bla... the door unlucks";
+                else (no)
+                    :set action_description = "There is no keyhole here";
+                endif
+            else (no)
+                :set action_description = "You don't have a key";
+            endif
+        else (no)
+            :set action_description = "You cannot use that (//item//);
+        endif
+    elseif (action is "open") then (yes)
+        if (item is "door") then (yes)
+            if (location is "door") then (yes)
+                if (door_state is "unlocked") then (yes)
+                    :set door_state = "open";
+                    :set action_description = "You push the door and it swings open";
+                else (no)
+                    :set action_description = "The door is locked";
+                endif
+            else (no)
+                :set action_description = "There is no door here";
+            endif
+        else (no)
+            :set action_description = "You cannot open that (//item//);
+        endif
+    endif 
+
+end while (True)
+
+:Show "The game ended in ...";
+if (win is True) then (yes)
+    :show "Success!";
+else (no)
+    :show "Failure";
+endif
+->theend;
+stop
+
+@enduml
