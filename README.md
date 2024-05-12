@@ -24,6 +24,7 @@ Each action is delegated to sub flowcharts for each action. See below.
 We will try to handle each action in the dociments listed below.
 
 
+<!--
 ```plantuml
 @startuml
 'object gameover
@@ -87,6 +88,11 @@ stop
 
 @enduml
 ```
+-->
+
+![README](https://www.plantuml.com/plantuml/svg/fPJ1Rfmm48RlynGJBeL3zm4MASgXYffpefxZu66PreoHFHIbrRvxPKEpR59rYN93zlVF_zb2lebgWewzWq_-wJirYWVJa_z90U1g2ERG6nmZVQEWt1Xtrw8N0CWf64nGLlQ2TyAAlm4HSV_LY7M4BAni7FyoYQZX231rx0ZBlmqLSiJorhX8LOwUvdtXE3ZpZ9PY4tX8Qt6Pl-wmCrRdZIFC_GVIf1omyNrln5xFot5mhFYuB3uYYteqJQupOf6L-deUmIsMomv7B0uUrHSLQaU2vJF5waNaPBmOBR4bir9UMPypzGjop5_a8hqIY1Dhqw6N0dt0WiGyENgdq6h6cTGRgnMuKaEy9DUsivtb-06zD6MRNzjkkJerFzwhaYCN93ApfRuBVjhOly3__sTcPaFp6BUUEwF_Ek-fDH4RElr0ihKqinTkEJDlUiLoYm0a5fS7vI6CL07ixpi_OV7GKNx44aaMMN2tsnKr9Dc9isaElFRSnno_7vk6OhmgQaX7n5BysVwjOJU6T1_P13vVQqSx4bj3L3y0t93OiNT_0000 "README")
+
+
 
 ## Sub flowcharts
 
